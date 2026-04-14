@@ -1,0 +1,16 @@
+.todoItem{
+  padding-block:0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:16px;
+}
+
+.toggleCompleted{
+  margin-left: auto;
+}
+
+.completed{
+  text-decoration: line-through;
+  opacity: 0.6;
+}

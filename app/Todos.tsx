@@ -1,17 +1,18 @@
 "use client"
 import { useState } from "react"
-import Todo from "./types"
+import {Todo} from "./types"
 import style from './Todos.module.css'
+import TodoItem from "./TodoItem"
 
 const Todos = () => {
   const [todos, setTodos] = useState<Todo[]>([
     {
-      id: Date.now() + Math.random(),
+      id: crypto.randomUUID(),
       text: "Go shopping",
       completed: false
     },
     {
-      id: Date.now() + Math.random(),
+      id: crypto.randomUUID(),
       text: "Feed dog... always...",
       completed: false
     },
@@ -19,7 +20,7 @@ const Todos = () => {
 
   const addTodo = (text: string) => {
     const todo: Todo = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       text: text,
       completed: false
     }
@@ -27,7 +28,7 @@ const Todos = () => {
     setTodos(prev => [...prev, todo]);
   }
 
-  const editTodo = (id: number, text: string) => {
+  const editTodo = (id: string, text: string) => {
 
     setTodos(prev =>
       prev.map(todo =>
@@ -38,7 +39,7 @@ const Todos = () => {
     );
   }
 
-  const toggleComplete = (id: number): void => {
+  const toggleComplete = (id: string): void => {
     setTodos(prev =>
       prev.map(todo =>
         todo.id === id ? { ...todo, completed: !todo.completed }
@@ -47,7 +48,7 @@ const Todos = () => {
     );
   }
 
-  const deleteTodo = (id: number) => {
+  const deleteTodo = (id: string) => {
     if (!window.confirm("Do you wish to delete this todo?")) return;
     setTodos(prev => prev.filter(todo => todo.id !== id));
   }
@@ -55,16 +56,7 @@ const Todos = () => {
   return (
     <div className={style.todoList}>
       {todos.map((todo, i) => (
-        <div key={"todo-" + i} className={`${style.todoItem} ${todo.completed ? style.completed : ''}`}>
-          {todo.completed ? (
-            <span>{todo.text}</span>
-          ) : (
-            <input placeholder="Enter a task" type="text" value={todo.text} onChange={(e) => editTodo(todo.id, e.target.value)} />
-          )
-          }
-          <input type='checkbox' className={style.toggleCompleted} checked={todo.completed} onChange={() => toggleComplete(todo.id)} />
-          <button onClick={() => deleteTodo(todo.id)}>x</button>
-        </div>
+        <TodoItem key={'todo-'+i} todo={todo} onDelete={deleteTodo} onEdit={editTodo} onToggle={toggleComplete} />
       ))}
       <div className={style.todoFooter}>
         <button className={style.button} onClick={()=> addTodo("")} >Create</button>
