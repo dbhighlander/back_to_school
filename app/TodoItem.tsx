@@ -1,8 +1,8 @@
 "use client"
 import style from './TodoItem.module.css'
-import { TodoProps } from './types'
+import { TodoItemProps } from './types'
 
-const TodoItem = ({ todo, onEdit, onDelete, onToggle }: TodoProps) => {
+const TodoItem = ({ todo, onEdit, onDelete, onToggle }: TodoItemProps) => {
   return (
     <div className={`${style.todoItem} ${todo.completed ? style.completed : ''}`}>
       {todo.completed ? (

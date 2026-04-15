@@ -1,8 +1,16 @@
-import Image from "next/image";
 import Todos from "./Todos";
 
-export default function Home() {
+async function getTodos(){
+  const res = await fetch('http://localhost:3000/api/todos', {
+    cache: 'no-store', 
+  });
+
+  return res.json();
+}
+
+export default async function Home() {
+  const todos = await getTodos();
   return (
-    <Todos />
+    <Todos initialTodos={todos}/>
   );
 }
