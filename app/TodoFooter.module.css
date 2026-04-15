@@ -1,0 +1,14 @@
+.todoFooter{
+  display: flex;
+  flex-direction: row;
+}
+
+.button{
+  border-radius: 3px;
+  background-color: darkblue;
+  padding: 0.25rem 0.5rem;
+  color: white;
+  font-weight: 400;
+  margin-left:auto;
+  cursor: pointer;
+}

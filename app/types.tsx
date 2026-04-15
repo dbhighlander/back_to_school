@@ -14,3 +14,7 @@ export interface TodoItemProps {
 export interface TodoProps {
   initialTodos: Todo[]
 }
+
+export interface TodoFooterProps{
+  onAdd: (text:string) => void
+}
