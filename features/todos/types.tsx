@@ -18,3 +18,9 @@ export interface TodoProps {
 export interface TodoFooterProps{
   onAdd: (text:string) => void
 }
+
+export type TodoAction = 
+{type: "add"; payload: string}
+| {type: "delete"; payload: string}
+| {type: "toggle"; payload: string}
+| {type: "edit"; payload: { id: string; text: string }}

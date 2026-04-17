@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import TodoItem from '@/app/TodoItem'
+import TodoItem from '@/components/todos/TodoItem';
 
 const todo = {
   id: '1',

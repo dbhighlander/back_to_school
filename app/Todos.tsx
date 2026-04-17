@@ -1,9 +1,9 @@
 "use client"
 import style from './Todos.module.css'
-import TodoItem from "./TodoItem"
-import useTodos from "./useTodos"
-import { TodoProps } from './types'
-import { TodoFooter } from './TodoFooter'
+import TodoItem from '@/components/todos/TodoItem'
+import useTodos from "../features/todos/useTodos"
+import { TodoProps } from '../features/todos/types'
+import TodoFooter from '@/components/todos/TodoFooter'
 
 const Todos = ({ initialTodos }: TodoProps) => {
 

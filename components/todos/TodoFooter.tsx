@@ -1,7 +1,8 @@
+"use client"
 import style from './TodoFooter.module.css'
-import { TodoFooterProps } from './types'
+import { TodoFooterProps } from '@/features/todos/types'
 
-export const TodoFooter = ({ onAdd }: TodoFooterProps) => {
+const TodoFooter = ({ onAdd }: TodoFooterProps) => {
 
   return (
     <div className={style.todoFooter}>
@@ -9,3 +10,5 @@ export const TodoFooter = ({ onAdd }: TodoFooterProps) => {
     </div>
   )
 }
+
+export default TodoFooter
