@@ -1,7 +1,7 @@
 "use client"
 import todosReducer from "./todosReducer";
 import { Todo } from "./types";
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 
 const useTodos = (initialTodos: Todo[]) => {
   const [todos, dispatch] = useReducer(todosReducer, initialTodos)
@@ -10,18 +10,18 @@ const useTodos = (initialTodos: Todo[]) => {
     dispatch({ type: "add", payload: text });
   }
 
-  const editTodo = (id: string, text: string) => {
+  const editTodo = useCallback((id: string, text: string) => {
     dispatch({ type: "edit", payload: { id: id, text: text } })
-  }
+  }, []);
 
-  const toggleComplete = (id: string): void => {
+  const toggleComplete = useCallback((id: string): void => {
     dispatch({ type: "toggle", payload: id });
-  }
+  }, []);
 
-  const deleteTodo = (id: string) => {
+  const deleteTodo = useCallback((id: string) => {
     if (!window.confirm("Do you wish to delete this todo?")) return;
     dispatch({ type: "delete", payload: id });
-  }
+  }, []);
 
   return { todos, addTodo, editTodo, toggleComplete, deleteTodo }
 }

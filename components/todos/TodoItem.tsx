@@ -1,6 +1,7 @@
 "use client"
+import { memo } from 'react'
 import style from './TodoItem.module.css'
-import { TodoItemProps } from './types'
+import { TodoItemProps } from '@/features/todos/types'
 
 const TodoItem = ({ todo, onEdit, onDelete, onToggle }: TodoItemProps) => {
   return (
@@ -17,4 +18,4 @@ const TodoItem = ({ todo, onEdit, onDelete, onToggle }: TodoItemProps) => {
   )
 }
 
-export default TodoItem
+export default memo(TodoItem);
