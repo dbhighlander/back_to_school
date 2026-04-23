@@ -8,7 +8,6 @@ import TodoFooter from '@/components/todos/TodoFooter'
 const Todos = ({ initialTodos }: TodoProps) => {
 
   const { todos, deleteTodo, editTodo, toggleComplete, addTodo } = useTodos(initialTodos);
-
   return (
     <div className={style.todoList}>
       {todos.map((todo, i) => (
