@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import Todos from "./Todos";
 import { cookies } from "next/headers";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 async function getTodos() {
   const cookieStore = await cookies();
@@ -14,8 +15,16 @@ async function getTodos() {
 }
 
 export default async function Home() {
-  const todos = await getTodos();
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['todos'],
+    queryFn: getTodos
+  });
+  
   return (
-    <Todos initialTodos={todos} />
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Todos />
+    </HydrationBoundary>
   );
 }

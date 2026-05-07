@@ -2,12 +2,11 @@
 import style from './Todos.module.css'
 import TodoItem from '@/components/todos/TodoItem'
 import useTodos from "../features/todos/useTodos"
-import { TodoProps } from '../features/todos/types'
 import TodoFooter from '@/components/todos/TodoFooter'
 
-const Todos = ({ initialTodos }: TodoProps) => {
+const Todos = () => {
 
-  const { todos, deleteTodo, editTodo, toggleComplete, addTodo } = useTodos(initialTodos);
+  const { todos, addTodo, deleteTodo, editTodo, toggleComplete } = useTodos();
   return (
     <div className={style.todoList}>
       {todos.map((todo, i) => (

@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import styles from './layout.module.css'
-import { cookies } from "next/headers";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,17 +18,20 @@ export default async function RootLayout({
       lang="en"
     >
       <body>
-        <div className={styles.page}>
-          <header className={styles.header}>
-            <h1>Todo App</h1>
-          </header>
-          <main className={styles.main}>
-            <div className={styles.container}>
-              {children}
-            </div>
-          </main>
-        </div>
+        <Providers>
+          <div className={styles.page}>
+            <header className={styles.header}>
+              <h1>Todo App</h1>
+            </header>
+            <main className={styles.main}>
+              <div className={styles.container}>
+                {children}
+              </div>
+            </main>
+          </div>
+        </Providers>
       </body>
     </html>
+
   );
 }

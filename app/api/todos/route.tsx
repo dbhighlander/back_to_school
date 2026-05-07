@@ -15,7 +15,8 @@ export async function GET(request: NextRequest) {
 
   const todos = await prisma.todo.findMany({
     where: {
-      userId: userId
+      userId: userId,
+      deletedAt: null
     }
   });
   return NextResponse.json(todos);

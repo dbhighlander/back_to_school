@@ -33,3 +33,8 @@ export type UpdateTodo = {
   text?: string;
   completed?: boolean;
 }
+
+export type TodoDelete = {
+  id: string,
+  deletedAt?: Date
+}

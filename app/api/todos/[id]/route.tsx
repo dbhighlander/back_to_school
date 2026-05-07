@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { UpdateTodo } from "@/features/todos/types";
+import { TodoDelete, UpdateTodo } from "@/features/todos/types";
 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const userId = request.cookies.get("u")?.value;
@@ -68,5 +68,5 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     }
   });
 
-  return NextResponse.json({ id, deletedAt: updatedTodo.deletedAt });
+  return NextResponse.json({ id, deletedAt: updatedTodo.deletedAt } as TodoDelete);
 }
